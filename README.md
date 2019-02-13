@@ -31,9 +31,9 @@ Most payees are displayed as an ambiguous string which you probably manually cha
 
 ```
 protected $payeesList = [
-	"BOL.COM BV" => "Bol.com",
-	"BELASTINGDIENST" => "Belastingdienst",
-	"Videoland door Buckaroo" => "Videoland"
+    "BOL.COM BV" => "Bol.com",
+    "BELASTINGDIENST" => "Belastingdienst",
+    "Videoland door Buckaroo" => "Videoland"
 ]
 ```
 
@@ -46,21 +46,21 @@ The example below shows how to change the normal memo for *zorgtoeslag* into som
 ```
 protected function formatMemo($row)
 {
-	$payee = $this->formatPayee($row[1]);
+    $payee = $this->formatPayee($row[1]);
 
-	$memo = $row[8];
+    $memo = $row[8];
 
-	if ($payee == 'Belastingdienst') {
+    if ($payee == 'Belastingdienst') {
 
-    	// Does the memo contain 'VOORSCHOT ZORGTOESLAG'?
-		if (strpos($memo, 'VOORSCHOT ZORGTOESLAG') !== false) {
-			$month = date_format(date_create_from_format('Ymd', $row[0]), 'n');
-			return 'Zorgtoeslag '.$this->formatMonth($month);
-		}
-	}
+    // Does the memo contain 'VOORSCHOT ZORGTOESLAG'?
+        if (strpos($memo, 'VOORSCHOT ZORGTOESLAG') !== false) {
+            $month = date_format(date_create_from_format('Ymd', $row[0]), 'n');
+            return 'Zorgtoeslag '.$this->formatMonth($month);
+        }
+    }
 
 
-	return $memo;
+    return $memo;
 }
 ```
 
