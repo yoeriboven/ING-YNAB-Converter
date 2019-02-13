@@ -67,4 +67,4 @@ protected function formatMemo($row)
 
 ### Other banks?
 
-In case you use a different Dutch bank, [let me know]() and I'll try to support your bank.
+In case you use a different Dutch bank, [let me know](https://twitter.com/yoeriboven) and I'll try to support your bank.
