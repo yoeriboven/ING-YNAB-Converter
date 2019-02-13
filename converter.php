@@ -14,7 +14,7 @@ if (php_sapi_name() == "cli") {
 
 $converter = new Converter();
 $converter->convertFile($input);
-$converter->saveTo($output);
+$converter->saveToFile($output);
 
 class Converter
 {
@@ -72,7 +72,7 @@ class Converter
      *
      * @param  string $output
      */
-    public function saveTo($output)
+    public function saveToFile($output)
     {
         $fp = fopen($output, 'w');
         fputcsv($fp, ['Date', 'Payee', 'Memo', 'Outflow', 'Inflow']);
@@ -85,6 +85,26 @@ class Converter
             echo 'Conversion succeeded'. PHP_EOL;
         } else {
             echo 'Conversion failed'. PHP_EOL;
+        }
+    }
+
+
+    /**
+     * Writes all transactions to a csv file
+     * which is immediately downloaded by the user
+     *
+     * @param  string $output
+     */
+    public function downloadFile($output)
+    {
+        header('Content-Type: application/csv');
+        header('Content-Disposition: attachment; filename="'.$output.'";');
+
+        $fp = fopen('php://output', 'w');
+        fputcsv($fp, ['Date', 'Payee', 'Memo', 'Outflow', 'Inflow']);
+
+        foreach ($this->transactions as $transaction) {
+            fputcsv($fp, $transaction);
         }
     }
 
