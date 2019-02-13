@@ -1,6 +1,6 @@
 <?php
 
-$input = 'input-2018.csv';
+$input = 'input.csv';
 $output = 'output.csv';
 
 /* If run from command line, the second argument is the input file */
