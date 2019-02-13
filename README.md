@@ -16,7 +16,7 @@ You will need these to use the converter:
 
 Run the command below to convert your file.
 
-* Converter.php is the path to the software
+* converter.php is the path to the software
 * input.csv is the path to the transactions file downloaded from ING
 
 ```
@@ -52,7 +52,7 @@ protected function formatMemo($row)
 
     if ($payee == 'Belastingdienst') {
 
-    // Does the memo contain 'VOORSCHOT ZORGTOESLAG'?
+        // Does the memo contain 'VOORSCHOT ZORGTOESLAG'?
         if (strpos($memo, 'VOORSCHOT ZORGTOESLAG') !== false) {
             $month = date_format(date_create_from_format('Ymd', $row[0]), 'n');
             return 'Zorgtoeslag '.$this->formatMonth($month);
