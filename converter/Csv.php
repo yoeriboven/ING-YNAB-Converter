@@ -1,5 +1,7 @@
 <?php
 
+namespace App;
+
 class Csv
 {
     /**
@@ -22,7 +24,6 @@ class Csv
             echo 'Conversion failed'. PHP_EOL;
         }
     }
-
 
     /**
      * Writes all transactions to a csv file

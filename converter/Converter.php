@@ -1,7 +1,8 @@
 <?php
 
-require_once 'Formatters/Formatter.php';
-require_once 'Csv.php';
+namespace App;
+
+use App\Formatters\Formatter;
 
 class Converter
 {
@@ -19,9 +20,9 @@ class Converter
     {
         $csv = CSV::readInput($input);
 
-        foreach ($csv as $row) {
-            $this->transactions[] = $formatter->formatRow($row);
-        }
+        $this->transactions = collect($csv)->map(function ($row) use ($formatter) {
+            return $formatter->formatRow($row);
+        });
     }
 
 

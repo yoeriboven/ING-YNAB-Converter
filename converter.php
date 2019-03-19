@@ -1,7 +1,9 @@
 <?php
 
-require_once 'converter/Converter.php';
-require_once 'converter/Formatters/INGFormatter.php';
+require __DIR__ . '/vendor/autoload.php';
+
+use App\Converter;
+use App\Formatters\INGFormatter;
 
 $input = 'input.csv';
 $output = 'output.csv';

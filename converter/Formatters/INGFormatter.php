@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Formatter.php';
+namespace App\Formatters;
 
 class INGFormatter implements Formatter
 {
