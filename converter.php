@@ -2,7 +2,7 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
-use App\Converter;
+use App\Converters\CSVConverter;
 use App\Formatters\INGFormatter;
 
 $input = 'input.csv';
@@ -17,6 +17,6 @@ if (php_sapi_name() == "cli") {
     $input = $argv[1];
 }
 
-$converter = new Converter();
+$converter = new CSVConverter();
 $converter->formatFile($input, new INGFormatter());
 $converter->saveToFile($output);

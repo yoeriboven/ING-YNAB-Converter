@@ -1,10 +1,11 @@
 <?php
 
-namespace App;
+namespace App\Converters;
 
+use App\CSV;
 use App\Formatters\Formatter;
 
-class Converter
+abstract class Converter
 {
     /**
      * Contains formatted arrays of transactions
@@ -16,15 +17,7 @@ class Converter
     /**
      * Normalizes the transaction data
      */
-    public function formatFile($input, Formatter $formatter)
-    {
-        $csv = CSV::readInput($input);
-
-        $this->transactions = collect($csv)->map(function ($row) use ($formatter) {
-            return $formatter->formatRow($row);
-        });
-    }
-
+    abstract public function formatFile($input, Formatter $formatter);
 
     /**
      * Writes all transactions to a csv file
@@ -35,7 +28,6 @@ class Converter
     {
         CSV::saveToFile($this->transactions, $output);
     }
-
 
     /**
      * Writes all transactions to a csv file
