@@ -15,7 +15,7 @@ class CSVConverter extends Converter
         $csv = CSV::readInput($input);
 
         $this->transactions = collect($csv)->map(function ($row) use ($formatter) {
-            return $formatter->formatRow($row);
+            return $formatter->getFormattedTransaction($row);
         });
     }
 }

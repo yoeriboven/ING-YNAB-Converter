@@ -2,34 +2,21 @@
 
 namespace App\Formatters;
 
-class INGFormatter implements Formatter
+class INGFormatter extends Formatter
 {
+
     /**
-     * Turns your vague payees into
-     * something more understandable.
+     * Returns a formatted row for every transaction
      *
-     * Edit this array for your own customization
-     *
-     * Example:
-     * [
-     *     "BOL.COM BV" => "Bol.com",
-     *     "BELASTINGDIENST" => "Belastingdienst",
-     *     "Videoland door Buckaroo" => "Videoland"
-     * ]
-     *
-     *
-     * @var array
+     * @param  array $row
+     * @return array
      */
-    protected $payeesList = [
-
-    ];
-
-    public function formatRow($row)
+    public function getFormattedTransaction($row)
     {
         $transaction = [];
-        $transaction[0] = $this->formatDate($row[0]); // Date
-        $transaction[1] = $this->formatPayee($row[1]); // Payee
-        $transaction[2] = $this->formatMemo($row); // Memo
+        $transaction[0] = $this->formatDate($row[0]);
+        $transaction[1] = $this->formatPayee($row[1]);
+        $transaction[2] = $this->formatMemo($row[8]);
         [$transaction[3], $transaction[4]] = $this->getAmount($row[5], $row[6]);
 
         return $transaction;
@@ -41,62 +28,10 @@ class INGFormatter implements Formatter
      * @param  string $date
      * @return string
      */
-    protected function formatDate($date)
+    private function formatDate($date)
     {
         return date_format(date_create_from_format('Ymd', $date), 'd-m-Y');
     }
-
-
-    /**
-     * Convert the abstract payee to something more recognizable
-     *
-     * @param  string $payee
-     * @return string
-     */
-    protected function formatPayee($payee)
-    {
-        if (array_key_exists($payee, $this->payeesList)) {
-            return $this->payeesList[$payee];
-        }
-
-        return $payee;
-    }
-
-
-    /**
-     * Allows for customization of the 'memo' column
-     *
-     * @param  array $row
-     * @return string
-     */
-    protected function formatMemo($row)
-    {
-        return $row[8];
-    }
-
-
-    /**
-     * Converts the integer month into a string representation
-     *
-     * @param  int    $month
-     * @return string
-     */
-    protected function formatMonth(int $month)
-    {
-        $dates = [
-            1 => 'Januari', 'Februari', 'Maart',
-            'April', 'Mei', 'Juni',
-            'Juli', 'Augustus', 'September',
-            'Oktober', 'November', 'December'
-        ];
-
-        if ($month == 13) {
-            $month = 1;
-        }
-
-        return $dates[$month];
-    }
-
 
     /**
      * Checks the type of transaction and
@@ -106,7 +41,7 @@ class INGFormatter implements Formatter
      * @param  string $amount
      * @return array
      */
-    protected function getAmount($type, $amount)
+    private function getAmount($type, $amount)
     {
         $transaction = [];
 

@@ -2,7 +2,7 @@
 
 namespace App\Formatters;
 
-interface Formatter
+abstract class Formatter
 {
     /*
     A row consists of the following data:
@@ -12,5 +12,37 @@ interface Formatter
     [3] = Outflow
     [4] = Inflow
     */
-    public function formatRow($row);
+
+
+    /**
+     * Returns a formatted row for every transaction
+     *
+     * @param  array $row
+     * @return array
+     */
+    abstract public function getFormattedTransaction($row);
+
+
+    /**
+     * Convert the abstract payee to something more recognizable
+     *
+     * @param  string $payee
+     * @return string
+     */
+    protected function formatPayee($payee)
+    {
+        return $payee;
+    }
+
+
+    /**
+     * Allows for customization of the 'memo' column
+     *
+     * @param  string $memo
+     * @return string
+     */
+    protected function formatMemo($memo)
+    {
+        return $memo;
+    }
 }
