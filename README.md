@@ -1,4 +1,4 @@
-# ING to YNAB converter
+# Dutch YNAB converter
 
 Converts the .csv export from a Dutch bank into a format You Need A Budget accepts
 
