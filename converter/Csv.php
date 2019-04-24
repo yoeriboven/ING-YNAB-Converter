@@ -25,6 +25,7 @@ class Csv
         }
     }
 
+    // throw exceptions
     /**
      * Writes all transactions to a csv file
      * which is immediately downloaded by the user
