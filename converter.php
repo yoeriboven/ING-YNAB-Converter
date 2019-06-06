@@ -2,10 +2,10 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
-use App\Converters\CSVConverter;
+use Yoeriboven\YNABConverter\Converters\CSVConverter;
 
-use App\Formatters\INGFormatter;
-use App\Formatters\RaboFormatter;
+use Yoeriboven\YNABConverter\Formatters\INGFormatter;
+use Yoeriboven\YNABConverter\Formatters\RaboFormatter;
 
 $input = 'input.csv';
 $output = 'output.csv';
