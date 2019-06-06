@@ -1,5 +1,8 @@
 {
+	"name": "yoeriboven/YNAB-Converter",
+    "description": "Converts the .csv export from Dutch banks into a format You Need A Budget accepts.",
     "require": {
+    	"php": "^7.2",
         "tightenco/collect": "^5.8"
     },
     "autoload": {
