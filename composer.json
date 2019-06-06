@@ -1,5 +1,5 @@
 {
-	"name": "yoeriboven/YNAB-Converter",
+	"name": "yoeriboven/ynab-converter",
     "description": "Converts the .csv export from Dutch banks into a format You Need A Budget accepts.",
     "require": {
     	"php": "^7.2",
